@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY Webcam</title>
+</head>
+<body>
+    
+ <h3 style="text-align: center; font-size: 50px;" > Webcam </h3>
+    <div class="main">
+             <video id ="video" autoplay="true"></video>
+       <canvas id='canvas' ></canvas></div>
+<div class="main2">
+<button onclick="letopen()">open camera</button>
+<button onclick="snap()">click picture</button></div>
+</body>
+</html>
+<script>
+    var video=document.querySelector('video');
+
+var canvas=document.getElementById('canvas');
+var context=canvas.getContext('2d'); 
+    function letopen(){
+ 
+const options={
+    video:true
+}
+navigator.mediaDevices.getUserMedia(options)
+.then( (stream)=>{
+    video.srcObject=stream;
+})
+.catch((Error)=>console.log(Error));
+ }
+    function snap(){
+    canvas.width=video.clientWidth;
+    canvas.height=video.clientHeight;
+    context.drawImage(video,0,0)
+}
+</script>
+
+<style>
+
+    .main{
+        display:flex;
+        justify-content: flex-start;
+   background: rgba(114, 112, 112, 0.274);
+        border-radius: 10px;
+            border: 1px solid gray;
+            align-items:center;
+            text-align: center;
+            flex-direction: column;
+            align-content: center;
+        gap:50px    
+    }
+    .main{
+        display:flex;
+        justify-content: flex-start;
+   background: rgba(114, 112, 112, 0.274);
+        border-radius: 10px;
+            border: 1px solid gray;
+            align-items:center;
+            text-align: center;
+            
+            align-content: center;
+        gap:50px    
+    }
+  
+    button{
+
+        color: rgb(3, 44, 32);
+   
+    font-family: monospace;
+    border-radius: 21px;
+    border: 1px solid #ff5722;
+    padding: 54px;
+    font-family: system-ui;
+    background: transparent;
+    font-size: 40px;
+    }
+    button:hover{
+        background: rgba(2, 228, 128, 0.459);
+    }
+        
+</style>
